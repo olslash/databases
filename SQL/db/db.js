@@ -10,23 +10,18 @@ var dbConnection = mysql.createConnection({
 dbConnection.connect();
 
 var getMessages = function(params, cb) {
-  var query = 'SELECT message_text, createdAt, id_room, id_user_from FROM messages';
+  var query = 'SELECT id_message, message_text, createdAt, id_room, id_user_from FROM messages';
 
-  // // build query from params.
+  if (params.room) { query = query.concat(' WHERE id_room = ' + params.room); }
 
-  if (params.room) {
-    query = query.concat(' WHERE id_room = ' + 1); //params.room);
-  }
-  if (params.limit) {
-    query = query.concat(' LIMIT ' + params.limit);
-  }
+  query = query.concat(' ORDER BY id_message DESC');
+
+  if (params.limit) { query = query.concat(' LIMIT ' + params.limit); }
 
   dbConnection.query(query, function(err, rows, fields) {
     if (err) throw err;
     cb(rows);
   });
-
-
 };
 
 var getAllRooms = function(cb) {
@@ -54,13 +49,13 @@ var insertMessage = function(params, cb) {
 
   var query = "INSERT INTO messages " +
     "(id_user_from, message_text, createdAt, id_room) " +
-    "values (" + id_user_from + ", '" + message_text + "','" + new Date() + "', " + id_room + ")";
+    "values (" + id_user_from + ", '" + message_text + "','" + new Date() + 
+      "', " + id_room + ")";
 
   dbConnection.query(query, function(err, rows) {
     if(err) { cb(err); } else { cb(null, rows.insertId); }
   });
 };
-
 
 module.exports = {
   getMessages   : getMessages,
