@@ -1,0 +1,14 @@
+get
+/rooms/<roomid> -> all messages in room
+/rooms/all 		-> return name & id of all rooms
+/users/<userid> -> all messages by user
+/users/all		-> name/ID of all users
+/users/name		-> info on one user
+
+
+post
+/rooms/<roomID> -> send message to room
+
+
+priority is:
+/rooms/<roomid>, GET and POST

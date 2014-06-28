@@ -22,6 +22,7 @@ var collectData = function(request, cb) {
   var data = "";
 
   request.on("data", function(chunk) {
+
     data += chunk; 
   });
 
