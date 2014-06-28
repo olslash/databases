@@ -41,8 +41,12 @@ var rooms = function(req, res, path, query) {
     }
   } else if (req.method === 'POST') {
     utils.collectData(req, function(err, data) {
-      db.insertMessage(data, function(newMessageID) {
-        utils.sendResponse(res, newMessageID, 'application/json', 201);  
+      db.insertMessage(data, function(err, newMessageID) {
+        if(err) { 
+          utils.sendResponse(res, err, 'text/plain', 500); // todo: what's the correct code?
+        } else {
+          utils.sendResponse(res, newMessageID, 'application/json', 201);  
+        }
       });
     });
     

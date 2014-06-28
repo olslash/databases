@@ -57,8 +57,7 @@ var insertMessage = function(params, cb) {
     "values (" + id_user_from + ", '" + message_text + "','" + new Date() + "', " + id_room + ")";
 
   dbConnection.query(query, function(err, rows) {
-    if(err) throw err;
-    cb(rows.insertId);
+    if(err) { cb(err); } else { cb(null, rows.insertId); }
   });
 };
 
