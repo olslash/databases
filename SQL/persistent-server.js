@@ -25,42 +25,19 @@ var handleRequest = function(req, res) {
     var regexRoute = new RegExp(route);
 
     if(regexRoute.test(path)) {
-      router[route](req, res, query);
+      router[route](req, res, path, query);
       served = true;
       break;
     }
   }
 
   if(!served) {
-    utils.send404(res, 'not found.')
+    utils.send404(res, 'not found.');
   }
-
 };
-
-
 
 var port = 8080;
 var ip = "127.0.0.1";
 var server = http.createServer(handleRequest);
 console.log("Listening on http://" + ip + ":" + port);
 server.listen(port, ip);
-
-
-
-
-
-
-
-
-
-
-
-//server will repsond to GET requests for messages in a given room
-//
-//// /?room="whatever"&limit="10"&time="lt: <date>"
-//server will respond to POST requests to post messages 
-//// 
-
-
-
-

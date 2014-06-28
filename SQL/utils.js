@@ -5,7 +5,7 @@ exports.headers = headers = {
   "access-control-max-age": 10, // Seconds.
 };
 
-var sendResponse = function(response, data, statusCode, contentType) {
+var sendResponse = function(response, data, contentType, statusCode) {
   statusCode = statusCode || 200;
   contentType = contentType || "text/plain";
 
