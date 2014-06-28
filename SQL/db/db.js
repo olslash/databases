@@ -9,8 +9,17 @@ var dbConnection = mysql.createConnection({
 
 dbConnection.connect();
 
+
+
+//select * from messages join users ON messages.id_user_from = users.id_user JOIN rooms ON messages.id_room = rooms.id;
+//select message_text, name_user, name_room from messages join users ON messages.id_user_from = users.id_user JOIN rooms ON messages.id_room = rooms.id;
+//
+
 var getMessages = function(params, cb) {
-  var query = 'SELECT id_message, message_text, createdAt, id_room, id_user_from FROM messages';
+  // var query = 'SELECT id_message, message_text, createdAt, id_room, id_user_from FROM messages';
+
+  var query = 'select createdAt, message_text, name_user, name_room from messages join users ' +
+  'ON messages.id_user_from = users.id_user JOIN rooms ON messages.id_room = rooms.id';
 
   if (params.room) { query = query.concat(' WHERE id_room = ' + params.room); }
 
