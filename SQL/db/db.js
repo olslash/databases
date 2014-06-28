@@ -62,5 +62,3 @@ module.exports = {
   getAllRooms   : getAllRooms,
   insertMessage : insertMessage
 };
-
-// dbConnection.end();

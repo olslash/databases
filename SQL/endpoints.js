@@ -12,6 +12,7 @@ var root = function(req, res, path, query) {
 
 var rooms = function(req, res, path, query) {
   if(req.method === 'OPTIONS') { sendGenericOptionsResponse(res); }
+  
   else if(req.method === 'GET') {
     var restPath = path.substring(6); // noooooo -- make the routing regex capture this
 
