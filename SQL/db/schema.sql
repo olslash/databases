@@ -5,6 +5,9 @@ USE chat;
 
 
 
+
+
+
 -- ---
 -- Globals
 -- ---
@@ -50,7 +53,7 @@ CREATE TABLE `messages` (
   `id_message` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
   `id_user_from` INTEGER NULL DEFAULT NULL,
   `message_text` VARCHAR(1000) NULL DEFAULT NULL,
-  `createdAt` DATETIME NULL DEFAULT NULL,
+  `createdAt` VARCHAR(100) NULL DEFAULT NULL,
   `id_room` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id_message`)
 );
@@ -64,7 +67,7 @@ DROP TABLE IF EXISTS `rooms`;
     
 CREATE TABLE `rooms` (
   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
-  `name_room` VARCHAR(20) NULL DEFAULT NULL,
+  `name_room` VARCHAR(20) NULL DEFAULT NULL UNIQUE,
   PRIMARY KEY (`id`)
 );
 
